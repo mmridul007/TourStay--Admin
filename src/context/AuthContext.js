@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 
 const INITIAL_STATE = {
@@ -48,9 +49,20 @@ const AuthReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
-  useEffect(()=>{
-    localStorage.setItem("user", JSON.stringify(state.user))
-  },[state.user])
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const res = await axios.get("https://tourstay-server.onrender.com/api/auth/me", {
+          withCredentials: true,
+        });
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      } catch {
+        dispatch({ type: "LOGOUT" });
+      }
+    };
+  
+    checkSession();
+  }, []);
 
   return (
     <AuthContext.Provider
