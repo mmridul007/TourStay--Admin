@@ -1,0 +1,62 @@
+.datatable {
+    height: 600px;
+    padding: 20px;
+    
+    .datatableTitle {
+      width: 100%;
+      font-size: 24px;
+      color: #555;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .datagrid {
+      color: #555;
+      border: none;
+      
+      .MuiDataGrid-cell {
+        border-bottom: 1px solid #f0f0f0;
+      }
+      
+      .cellWithStatus {
+        padding: 5px;
+        border-radius: 5px;
+        
+        &.pending {
+          background-color: rgba(255, 217, 0, 0.1);
+          color: #e6b800;
+        }
+        
+        &.success {
+          background-color: rgba(0, 128, 0, 0.1);
+          color: #008000;
+        }
+        
+        &.rejected {
+          background-color: rgba(255, 0, 0, 0.1);
+          color: #ff0000;
+        }
+      }
+      
+      .cellAction {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        button {
+          text-transform: none;
+        }
+      }
+    }
+  }
+  
+  .list {
+    display: flex;
+    width: 100%;
+    
+    .listContainer {
+      flex: 6;
+    }
+  }

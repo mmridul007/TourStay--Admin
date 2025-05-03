@@ -1,0 +1,57 @@
+.list {
+    display: flex;
+    width: 100%;
+  
+    .listContainer {
+      flex: 6;
+      margin: 20px;
+      
+      .datatable {
+        height: 600px;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        
+        .datatableTitle {
+          width: 100%;
+          font-size: 24px;
+          color: gray;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+        .datagrid {
+          height: 540px;
+          
+          .cellWithStatus {
+            padding: 5px;
+            border-radius: 5px;
+            
+            &.pending {
+              color: goldenrod;
+              background-color: rgba(218, 165, 32, 0.05);
+            }
+            
+            &.success {
+              color: green;
+              background-color: rgba(0, 128, 0, 0.05);
+            }
+            
+            &.rejected {
+              color: red;
+              background-color: rgba(255, 0, 0, 0.05);
+            }
+          }
+          
+          .cellAction {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+        }
+      }
+    }
+  }
