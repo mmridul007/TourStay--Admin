@@ -24,7 +24,7 @@ const PaymentSuccess = () => {
   const fetchPaymentSuccess = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/api/paymentUsers/allPayments"
+        `https://tourstay-server.onrender.com/api/paymentUsers/allPayments`
       );
       
       // Sort payments from latest to oldest

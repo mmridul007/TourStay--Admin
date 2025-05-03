@@ -17,7 +17,7 @@ import { useState } from "react";
 const Single = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
-  const { data, loading, error } = useFetch(`/users/${userId}`);
+  const { data, loading, error } = useFetch(`https://tourstay-server.onrender.com/api/users/${userId}`);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photoLoading, setPhotoLoading] = useState(false);
@@ -73,7 +73,7 @@ const Single = () => {
         const filenameWithExt = urlParts[urlParts.length - 1];
         const public_id = filenameWithExt.split(".")[0];
 
-        await axios.post("http://localhost:4000/cloudinary/delete", {
+        await axios.post(`https://tourstay-server.onrender.com/cloudinary/delete`, {
           public_id,
         });
       }
@@ -104,7 +104,7 @@ const Single = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.put(`/users/${userId}`, formData);
+      await axios.put(`https://tourstay-server.onrender.com/api/users/${userId}`, formData);
       setIsModalOpen(false);
       alert("User information updated successfully!");
       window.location.reload();

@@ -176,7 +176,7 @@ const NewHotel = () => {
       const filenameWithExt = urlParts[urlParts.length - 1];
       const public_id = filenameWithExt.split(".")[0];
 
-      await axios.post("http://localhost:4000/cloudinary/delete", {
+      await axios.post("https://tourstay-server.onrender.com/cloudinary/delete", {
         public_id,
       });
 

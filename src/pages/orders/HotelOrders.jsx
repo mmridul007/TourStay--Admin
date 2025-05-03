@@ -34,7 +34,7 @@ const HotelOrders = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/api/hotel-payment/orders"
+        "https://tourstay-server.onrender.com/api/hotel-payment/orders"
       );
       setData(res.data);
       setLoading(false);
@@ -73,7 +73,7 @@ const HotelOrders = () => {
     const calculatedRefund = calculateRefundAmount(order);
 
     try {
-      await axios.put(`http://localhost:4000/api/hotel-payment/cancel/${id}`, {
+      await axios.put(`https://tourstay-server.onrender.com/api/hotel-payment/cancel/${id}`, {
         refundAmount: calculatedRefund,
         refundStatus: calculatedRefund > 0 ? "processing" : "rejected",
         paymentStatus: calculatedRefund > 0 ? "refunded" : "cancelled",
@@ -96,7 +96,7 @@ const HotelOrders = () => {
 
     try {
       await axios.put(
-        `http://localhost:4000/api/hotel-payment/cancel/${selectedOrder._id}`,
+        `https://tourstay-server.onrender.com/api/hotel-payment/cancel/${selectedOrder._id}`,
         {
           refundAmount: refundAmount,
           refundStatus: "refunded",

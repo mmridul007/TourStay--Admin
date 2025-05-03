@@ -16,7 +16,9 @@ import HotelIcon from "@mui/icons-material/Hotel";
 const SingleRoom = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
-  const { data, loading, error } = useFetch(`/rooms/${userId}`);
+  const { data, loading, error } = useFetch(
+    `https://tourstay-server.onrender.com/api/rooms/${userId}`
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     desc: "",
@@ -60,7 +62,10 @@ const SingleRoom = () => {
           .split(",")
           .map((num) => ({ number: num.trim() })),
       };
-      await axios.put(`/rooms/${userId}`, updatedData);
+      await axios.put(
+        `https://tourstay-server.onrender.com/api/rooms/${userId}`,
+        updatedData
+      );
       setIsModalOpen(false);
       alert("Room information updated successfully!");
       window.location.reload();

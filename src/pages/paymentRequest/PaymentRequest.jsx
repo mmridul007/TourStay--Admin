@@ -36,7 +36,7 @@ const PaymentRequest = () => {
   const fetchPaymentRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:4000/api/users/payment-requested-users"
+        "https://tourstay-server.onrender.com/api/users/payment-requested-users"
       );
       setData(res.data);
       setLoading(false);
@@ -65,14 +65,17 @@ const PaymentRequest = () => {
     if (!selectedUser) return;
 
     try {
-      await axios.post("http://localhost:4000/api/paymentUsers", {
-        userId: selectedUser._id,
-        withdrawMethod: selectedUser.withdrawMethod,
-        withdrawalHoldAmount: selectedUser.withdrawalHoldAmount,
-        withdrawalNumber: selectedUser.withdrawalNumber,
-        withdrawalStatus: "success",
-      });
-      
+      await axios.post(
+        `https://tourstay-server.onrender.com/api/paymentUsers`,
+        {
+          userId: selectedUser._id,
+          withdrawMethod: selectedUser.withdrawMethod,
+          withdrawalHoldAmount: selectedUser.withdrawalHoldAmount,
+          withdrawalNumber: selectedUser.withdrawalNumber,
+          withdrawalStatus: "success",
+        }
+      );
+
       setProcessDialog(false);
       setSnackbar({
         open: true,
@@ -218,49 +221,55 @@ const PaymentRequest = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={6}>
                       <Typography>
-                        <strong>Withdrawal Amount:</strong> BDT {selectedUser.withdrawalHoldAmount}
+                        <strong>Withdrawal Amount:</strong> BDT{" "}
+                        {selectedUser.withdrawalHoldAmount}
                       </Typography>
                       <Typography>
-                        <strong>Withdrawal Method:</strong> {selectedUser.withdrawMethod}
+                        <strong>Withdrawal Method:</strong>{" "}
+                        {selectedUser.withdrawMethod}
                       </Typography>
                     </Grid>
                     <Grid item xs={6}>
                       <Typography>
-                        <strong>Withdrawal Number:</strong> {selectedUser.withdrawalNumber}
+                        <strong>Withdrawal Number:</strong>{" "}
+                        {selectedUser.withdrawalNumber}
                       </Typography>
                       <Typography>
-                        <strong>Withdrawal Status:</strong> {selectedUser.withdrawalStatus}
+                        <strong>Withdrawal Status:</strong>{" "}
+                        {selectedUser.withdrawalStatus}
                       </Typography>
                     </Grid>
                   </Grid>
                 </Paper>
               </Grid>
 
-              {selectedUser.withdrawHistory && selectedUser.withdrawHistory.length > 0 && (
-                <Grid item xs={12}>
-                  <Paper elevation={3} style={{ padding: "20px" }}>
-                    <Typography variant="h6" gutterBottom>
-                      Withdrawal History
-                    </Typography>
-                    {selectedUser.withdrawHistory.map((item, index) => (
-                      <Box 
-                        key={index} 
-                        mb={1} 
-                        p={1} 
-                        border="1px solid #eaeaea"
-                        borderRadius={1}
-                      >
-                        <Typography>
-                          <strong>Amount:</strong> BDT {item.amount}
-                        </Typography>
-                        <Typography>
-                          <strong>Date:</strong> {new Date(item.date).toLocaleString()}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Paper>
-                </Grid>
-              )}
+              {selectedUser.withdrawHistory &&
+                selectedUser.withdrawHistory.length > 0 && (
+                  <Grid item xs={12}>
+                    <Paper elevation={3} style={{ padding: "20px" }}>
+                      <Typography variant="h6" gutterBottom>
+                        Withdrawal History
+                      </Typography>
+                      {selectedUser.withdrawHistory.map((item, index) => (
+                        <Box
+                          key={index}
+                          mb={1}
+                          p={1}
+                          border="1px solid #eaeaea"
+                          borderRadius={1}
+                        >
+                          <Typography>
+                            <strong>Amount:</strong> BDT {item.amount}
+                          </Typography>
+                          <Typography>
+                            <strong>Date:</strong>{" "}
+                            {new Date(item.date).toLocaleString()}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Paper>
+                  </Grid>
+                )}
             </Grid>
           )}
         </DialogContent>
@@ -272,18 +281,17 @@ const PaymentRequest = () => {
       </Dialog>
 
       {/* Process Payment Dialog */}
-      <Dialog
-        open={processDialog}
-        onClose={() => setProcessDialog(false)}
-      >
+      <Dialog open={processDialog} onClose={() => setProcessDialog(false)}>
         <DialogTitle>Process Payment</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to process payment for user "{selectedUser?.username}"?
+            Are you sure you want to process payment for user "
+            {selectedUser?.username}"?
           </Typography>
           <Box mt={2}>
             <Typography>
-              <strong>Withdrawal Amount:</strong> BDT {selectedUser?.withdrawalHoldAmount}
+              <strong>Withdrawal Amount:</strong> BDT{" "}
+              {selectedUser?.withdrawalHoldAmount}
             </Typography>
             <Typography>
               <strong>Method:</strong> {selectedUser?.withdrawMethod}
@@ -295,18 +303,22 @@ const PaymentRequest = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setProcessDialog(false)}>Cancel</Button>
-          <Button onClick={confirmPaymentProcess} color="primary" variant="contained">
+          <Button
+            onClick={confirmPaymentProcess}
+            color="primary"
+            variant="contained"
+          >
             Confirm Payment
           </Button>
         </DialogActions>
       </Dialog>
 
       {/* Snackbar for notifications */}
-      <Snackbar 
-        open={snackbar.open} 
-        autoHideDuration={6000} 
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Alert onClose={handleCloseSnackbar} severity={snackbar.severity}>
           {snackbar.message}

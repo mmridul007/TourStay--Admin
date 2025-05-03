@@ -109,7 +109,7 @@ const New = ({ inputs, title }) => {
         isAdmin: info.isAdmin || false,
       };
 
-      await axios.post("/auth/register", newUser);
+      await axios.post("https://tourstay-server.onrender.com/api/auth/register", newUser);
       alert("User created successfully!");
 
       // Reset form after successful submission

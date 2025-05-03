@@ -50,7 +50,7 @@ const AVAILABLE_AMENITIES = [
 const SingleHotel = () => {
   const location = useLocation();
   const hotelId = location.pathname.split("/")[2];
-  const { data: hotel, loading, error } = useFetch(`/hotels/find/${hotelId}`);
+  const { data: hotel, loading, error } = useFetch(`https://tourstay-server.onrender.com/api/hotels/find/${hotelId}`);
   const { data: roomsData, loading: roomsLoading } = useFetch("/rooms");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -265,7 +265,7 @@ const SingleHotel = () => {
       const filenameWithExt = urlParts[urlParts.length - 1];
       const public_id = filenameWithExt.split(".")[0];
 
-      await axios.post("http://localhost:4000/cloudinary/delete", {
+      await axios.post(`https://tourstay-server.onrender.com/cloudinary/delete`, {
         public_id,
       });
 
@@ -283,7 +283,7 @@ const SingleHotel = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.put(`/hotels/${hotelId}`, formData);
+      await axios.put(`https://tourstay-server.onrender.com/api//hotels/${hotelId}`, formData);
       setIsModalOpen(false);
       alert("Hotel information updated successfully!");
       window.location.reload();

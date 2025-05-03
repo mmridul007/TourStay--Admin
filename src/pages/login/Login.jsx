@@ -32,7 +32,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
 
     try {
-      const res = await axios.post("/auth/login", credentials, {
+      const res = await axios.post("https://tourstay-server.onrender.com/api/auth/login", credentials, {
         withCredentials: true,
       });
 

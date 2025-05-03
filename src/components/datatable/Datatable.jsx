@@ -11,7 +11,9 @@ const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch(`/${path}`);
+  const { data, loading, error } = useFetch(
+    `https://tourstay-server.onrender.com/api/${path}`
+  );
 
   useEffect(() => {
     setList(data);
@@ -54,7 +56,7 @@ const Datatable = ({ columns }) => {
   const handleDelete = async (roomId, hotelId) => {
     try {
       await axios.delete(
-        `http://localhost:4000/api/rooms/${roomId}/${hotelId}`
+        `https://tourstay-server.onrender.com/api/rooms/${roomId}/${hotelId}`
       );
       setList(list.filter((item) => item._id !== roomId));
       toast.success("Item deleted successfully");

@@ -65,7 +65,7 @@ const NewRoom = () => {
         .map((room) => ({ number: room.trim() }))
         .filter((room) => room.number);
 
-      await axios.post(`http://localhost:4000/api/rooms/${hotelId}`, { ...info,hotelId:hotelId, roomNumbers });
+      await axios.post(`https://tourstay-server.onrender.com/api/rooms/${hotelId}`, { ...info,hotelId:hotelId, roomNumbers });
       alert("Room created successfully!");
 
       // Reset form after successful submission

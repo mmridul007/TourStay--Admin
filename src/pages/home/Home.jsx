@@ -63,59 +63,59 @@ const Home = () => {
 
         // General statistics
         const totalUsers = await axios.get(
-          "http://localhost:4000/api/users/totalUsers"
+          "https://tourstay-server.onrender.com/api/users/totalUsers"
         );
         const totalAdmins = await axios.get(
-          "http://localhost:4000/api/users/totalAdmins"
+          "https://tourstay-server.onrender.com/api/users/totalAdmins"
         );
         const totalHotels = await axios.get(
-          "http://localhost:4000/api/hotels/totalHotels"
+          "https://tourstay-server.onrender.com/api/hotels/totalHotels"
         );
         const totalQuickRooms = await axios.get(
-          "http://localhost:4000/api/quickrooms/totalQuickrooms"
+          "https://tourstay-server.onrender.com/api/quickrooms/totalQuickrooms"
         );
         const totalWithdrawalRequests = await axios.get(
-          "http://localhost:4000/api/users/totalWithdrawal-Requested"
+          "https://tourstay-server.onrender.com/api/users/totalWithdrawal-Requested"
         );
 
         // QuickStay statistics
         const quickStaySuccessfulOrders = await axios.get(
-          "http://localhost:4000/api/payment/totalSuccessfulOrders"
+          "https://tourstay-server.onrender.com/api/payment/totalSuccessfulOrders"
         );
         const quickStayRefundedOrders = await axios.get(
-          "http://localhost:4000/api/payment/totalRefundedOrders"
+          "https://tourstay-server.onrender.com/api/payment/totalRefundedOrders"
         );
         const quickStayCancelledOrders = await axios.get(
-          "http://localhost:4000/api/payment/totalCancelledOrders"
+          "https://tourstay-server.onrender.com/api/payment/totalCancelledOrders"
         );
         const quickStayTotalAmount = await axios.get(
-          "http://localhost:4000/api/payment/totalAmountOfSuccessfulOrders"
+          "https://tourstay-server.onrender.com/api/payment/totalAmountOfSuccessfulOrders"
         );
         const totalBookingPriceOfRefundedBooking = await axios.get(
-          "http://localhost:4000/api/payment/totalBookingPriceOfRefundedBooking"
+          "https://tourstay-server.onrender.com/api/payment/totalBookingPriceOfRefundedBooking"
         );
         const totalAmountOfRefundedOrders = await axios.get(
-          "http://localhost:4000/api/payment/totalAmountOfRefundedOrders"
+          "https://tourstay-server.onrender.com/api/payment/totalAmountOfRefundedOrders"
         );
 
         // Hotel statistics
         const hotelSuccessfulOrders = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalSuccessfulOrders"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalSuccessfulOrders"
         );
         const hotelRefundedOrders = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalRefundOrders"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalRefundOrders"
         );
         const hotelCancelledOrders = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalCancelOrders"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalCancelOrders"
         );
         const hotelTotalAmount = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalAmountOfSuccessfulBookings"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalAmountOfSuccessfulBookings"
         );
         const totalBookingPriceOfRefundedBookings = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalBookingPriceOfRefundedBookings"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalBookingPriceOfRefundedBookings"
         );
         const totalAmountOfRefundedBookings = await axios.get(
-          "http://localhost:4000/api/hotel-payment/totalAmountOfRefundedBookings"
+          "https://tourstay-server.onrender.com/api/hotel-payment/totalAmountOfRefundedBookings"
         );
 
         // Calculate commissions
