@@ -36,7 +36,7 @@ const NewHotel = () => {
   const [rooms, setRooms] = useState([]);
   const [isAmenitiesOpen, setIsAmenitiesOpen] = useState(false);
   const [isRoomsOpen, setIsRoomsOpen] = useState(false);
-  const { data: roomsData, loading: roomsLoading } = useFetch("/rooms");
+  const { data: roomsData, loading: roomsLoading } = useFetch("https://tourstay-server.onrender.com/api/rooms");
 
   const amenitiesDropdownRef = useRef(null);
   const roomsDropdownRef = useRef(null);
@@ -204,7 +204,7 @@ const NewHotel = () => {
         },
       };
 
-      await axios.post("/hotels", newHotel);
+      await axios.post("https://tourstay-server.onrender.com/api/hotels", newHotel);
       alert("Hotel created successfully!");
       window.location.href = "/hotels";
     } catch (err) {

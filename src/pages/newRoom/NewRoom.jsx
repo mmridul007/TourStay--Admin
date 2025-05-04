@@ -14,7 +14,7 @@ const NewRoom = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
-  const { data, loading, error } = useFetch("/hotels");
+  const { data, loading, error } = useFetch("https://tourstay-server.onrender.com/api/hotels");
 
   const handleChange = (e) => {
     const { id, value } = e.target;

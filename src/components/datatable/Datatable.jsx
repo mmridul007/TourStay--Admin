@@ -19,13 +19,13 @@ const Datatable = ({ columns }) => {
     setList(data);
   }, [data]);
 
-  const confirmDelete = (roomId, hotelId) => {
+  const confirmDelete = (itemId, hotelId) => {
     toast.info(
       <div>
         Are you sure you want to delete this item?
         <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
           <button
-            onClick={() => handleDelete(roomId, hotelId)}
+            onClick={() => handleDelete(itemId, hotelId)}
             style={{
               padding: "5px 10px",
               backgroundColor: "#7451F8",
@@ -53,17 +53,23 @@ const Datatable = ({ columns }) => {
     );
   };
 
-  const handleDelete = async (roomId, hotelId) => {
+  const handleDelete = async (itemId, hotelId) => {
+    let deleteUrl;
+
+    if (path === "rooms") {
+      deleteUrl = `https://tourstay-server.onrender.com/api/rooms/${itemId}/${hotelId}`;
+    } else {
+      deleteUrl = `https://tourstay-server.onrender.com/api/${path}/${itemId}`;
+    }
+
     try {
-      await axios.delete(
-        `https://tourstay-server.onrender.com/api/rooms/${roomId}/${hotelId}`
-      );
-      setList(list.filter((item) => item._id !== roomId));
+      await axios.delete(deleteUrl);
+      setList(list.filter((item) => item._id !== itemId));
       toast.success("Item deleted successfully");
     } catch (err) {
       toast.error("Failed to delete item");
     } finally {
-      toast.dismiss(); // Close the confirmation
+      toast.dismiss();
     }
   };
 
