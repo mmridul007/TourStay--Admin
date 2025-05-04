@@ -37,7 +37,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path="adminlogin" element={<Login />} />
+            <Route path="login" element={<Login />} />
             <Route
               index
               element={
