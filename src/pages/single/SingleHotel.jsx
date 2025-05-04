@@ -50,8 +50,14 @@ const AVAILABLE_AMENITIES = [
 const SingleHotel = () => {
   const location = useLocation();
   const hotelId = location.pathname.split("/")[2];
-  const { data: hotel, loading, error } = useFetch(`https://tourstay-server.onrender.com/api/hotels/find/${hotelId}`);
-  const { data: roomsData, loading: roomsLoading } = useFetch("/rooms");
+  const {
+    data: hotel,
+    loading,
+    error,
+  } = useFetch(
+    `https://tourstay-server.onrender.com/api/hotels/find/${hotelId}`
+  );
+  const { data: roomsData, loading: roomsLoading } = useFetch("https://tourstay-server.onrender.com/api/rooms");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photoLoading, setPhotoLoading] = useState(false);
@@ -265,9 +271,12 @@ const SingleHotel = () => {
       const filenameWithExt = urlParts[urlParts.length - 1];
       const public_id = filenameWithExt.split(".")[0];
 
-      await axios.post(`https://tourstay-server.onrender.com/cloudinary/delete`, {
-        public_id,
-      });
+      await axios.post(
+        `https://tourstay-server.onrender.com/cloudinary/delete`,
+        {
+          public_id,
+        }
+      );
 
       const newPhotos = [...formData.photos];
       newPhotos.splice(index, 1);
@@ -283,7 +292,10 @@ const SingleHotel = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.put(`https://tourstay-server.onrender.com/api//hotels/${hotelId}`, formData);
+      await axios.put(
+        `https://tourstay-server.onrender.com/api/hotels/${hotelId}`,
+        formData
+      );
       setIsModalOpen(false);
       alert("Hotel information updated successfully!");
       window.location.reload();

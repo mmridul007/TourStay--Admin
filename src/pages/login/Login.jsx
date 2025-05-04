@@ -32,12 +32,24 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
 
     try {
-      const res = await axios.post("https://tourstay-server.onrender.com/api/auth/login", credentials, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://tourstay-server.onrender.com/api/auth/login",
+        credentials,
+        {
+          withCredentials: true,
+        }
+      );
 
       if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        // dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        // setSuccessMessage("Login successful! Redirecting...");
+        // setTimeout(() => navigate("/"), 2000);
+        const userData = {
+          ...res.data.details,
+          isAdmin: res.data.isAdmin,
+        };
+
+        dispatch({ type: "LOGIN_SUCCESS", payload: userData });
         setSuccessMessage("Login successful! Redirecting...");
         setTimeout(() => navigate("/"), 2000);
       } else {

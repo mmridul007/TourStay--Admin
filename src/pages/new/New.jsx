@@ -5,6 +5,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState(null);
@@ -13,6 +14,8 @@ const New = ({ inputs, title }) => {
   const [photoError, setPhotoError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -109,9 +112,16 @@ const New = ({ inputs, title }) => {
         isAdmin: info.isAdmin || false,
       };
 
-      await axios.post("https://tourstay-server.onrender.com/api/auth/register", newUser);
-      alert("User created successfully!");
+      await axios.post(
+        "https://tourstay-server.onrender.com/api/auth/register",
+        newUser,
+        {
+          withCredentials: true,
+        }
+      );
 
+      alert("User created successfully!");
+      navigate("/users");
       // Reset form after successful submission
       setInfo({});
       setFile(null);
@@ -129,7 +139,6 @@ const New = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        
         <div className="top">
           <h1>{title}</h1>
         </div>
