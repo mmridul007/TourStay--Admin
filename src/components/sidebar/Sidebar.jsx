@@ -3,17 +3,17 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
-import RequestPageIcon from '@mui/icons-material/RequestPage';
+import RequestPageIcon from "@mui/icons-material/RequestPage";
 import StoreIcon from "@mui/icons-material/Store";
-import HouseIcon from '@mui/icons-material/House';
+import HouseIcon from "@mui/icons-material/House";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import { Link, useNavigate } from "react-router-dom";
-import { DarkModeContext} from "../../context/darkModeContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import {AuthContext} from "../../context/AuthContext"
+import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
   // Use unique variable names for dispatch
@@ -24,7 +24,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     authDispatch({ type: "LOGOUT" }); // Use authDispatch for AuthContext
     localStorage.removeItem("user");
-    navigate("/adminlogin"); // Redirect to login page after logout
+    navigate("/login"); // Redirect to login page after logout
   };
 
   return (
@@ -39,12 +39,12 @@ const Sidebar = () => {
         <ul>
           <p className="title">MAIN</p>
           <Link to="/" style={{ textDecoration: "none" }}>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
           </Link>
-          
+
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -65,31 +65,29 @@ const Sidebar = () => {
             </li>
           </Link>
 
-
-
           <Link to="/orders" style={{ textDecoration: "none" }}>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Orders(QuickRooms)</span>
-          </li>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Orders(QuickRooms)</span>
+            </li>
           </Link>
           <Link to="/hotel-orders" style={{ textDecoration: "none" }}>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Orders(Hotels)</span>
-          </li>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Orders(Hotels)</span>
+            </li>
           </Link>
           <Link to="/payment-request" style={{ textDecoration: "none" }}>
-          <li>
-            <RequestPageIcon className="icon" />
-            <span>Payment Request</span>
-          </li>
+            <li>
+              <RequestPageIcon className="icon" />
+              <span>Payment Request</span>
+            </li>
           </Link>
           <Link to="/payment-success" style={{ textDecoration: "none" }}>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Payment Success</span>
-          </li>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Payment Success</span>
+            </li>
           </Link>
 
           <p className="title">USER</p>
@@ -118,4 +116,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

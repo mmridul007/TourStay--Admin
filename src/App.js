@@ -26,7 +26,7 @@ function App() {
     const { user } = useContext(AuthContext);
 
     if (!user) {
-      return <Navigate to="/adminlogin" />;
+      return <Navigate to="/login" />;
     }
 
     return children;
